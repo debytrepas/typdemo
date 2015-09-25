@@ -1,0 +1,31 @@
+
+<template name="feedback">
+<p> Hi everyone, I hope you had a great time at the the party. Now, we at So'Deis, want to make your experience memorable! Did you had a bad experience? Did you had the best time of your life? Please let's us know, so that next time it will be even more memorable.</p>
+
+{{#if currentUser}}
+<form id="feedbackform">
+		Comments: <input type="text" id="comments" size="100%"> <br>
+		<input type= "submit">
+</form>
+	{{else}}
+	You must be signed in to post comments!
+	{{/if}}
+	
+	<h2>Showing the last 10 of {{numcomments}} chats</h2>
+  <table class="table table-bordered">
+	  <tbody>
+	{{#each commentlines}}
+	{{> commentitem}}
+	{{/each}}
+</tbody>
+</table>
+
+
+
+</template>
+
+<template name="commentitem">
+	<tr>
+		<td>{{who}} said </td> <td>{{comments}}</td><td> at {{when}}</td>
+	</tr>
+</template>

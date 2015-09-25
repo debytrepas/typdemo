@@ -1,4 +1,4 @@
-<template name="chat">
+<template name="event">
 	
 	{{#if currentUser}}
 	<form id="chatform">
@@ -15,7 +15,7 @@
   <table class="table table-bordered">
 	  <tbody>
 	{{#each chatlines}}
-	{{> chatitem}}
+	{{> eventitem}}
 	{{/each}}
 </tbody>
 </table>
@@ -24,7 +24,7 @@
 
 </template>
 
-<template name="chatitem">
+<template name="eventitem">
 	<tr>
 		<td>{{who}} said </td> <td>{{eventname}}</td><td> at {{when}}</td>
 	</tr>

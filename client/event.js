@@ -1,4 +1,4 @@
-Template.chat.events({
+Template.event.events({
 	"submit #chatform": function(event){
 		
 		event.preventDefault();
@@ -26,7 +26,7 @@ Template.chat.events({
 	}
 });
 
-Template.chat.helpers({
+Template.event.helpers({
 	chatlines: function(){
 		return ChatLines.find({},{limit:10, sort:{when:-1}});
 	},
