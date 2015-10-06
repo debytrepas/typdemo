@@ -29,8 +29,15 @@ Template.event.events({
 Template.event.helpers({
 	chatlines: function(){
 		return ChatLines.find({},{limit:10, sort:{when:-1}});
-	},
+	    },
+
 	numchats: function(){
 		return ChatLines.find().count();
-	}
-});
+	    },
+
+	brandeisian: function(){
+		//var ee = Meteor.user().services.google.email;
+		var ee = Meteor.user().emails[0].address;
+		return ee.substring(ee.length-13) == "@brandeis.edu";
+	     }
+})

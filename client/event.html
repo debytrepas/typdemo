@@ -1,26 +1,45 @@
 <template name="event">
+	<h1> Register to post and see an event</h1>
 	
 	{{#if currentUser}}
-	<form id="chatform">
+	
+
+	{{#if brandeisian}} 
+Please fill out the following a form if you want to post an event.<br>
+	You should fill out a form for each event you want to post. 
+	
+	<form id="eventform">
 		Name: <input type="text" id="eventname" size="100%"> <br>
 		Date: <input type="text" id="eventdate" size="100%"> <br> 
 		<input type= "submit">
 
 	</form>
-	{{else}}
-	You must be signed in to post comments!
-	{{/if}}
+
 	
 	<h2>Showing the last 10 of {{numchats}} chats</h2>
-  <table class="table table-bordered">
-	  <tbody>
+	<table class="table table-bordered">
+		<tbody>
 	{{#each chatlines}}
 	{{> eventitem}}
 	{{/each}}
-</tbody>
-</table>
+
+		</tbody>
+	</table>
 
 
+	{{else}}
+	 
+	 <h3>Only Brandeis folks can see this stuff!! </h3> 
+	 <p style="font-size: 150%">SOCIAL JUSTICE RULES!!!</p>
+	 NO INTRUDERS ALLOWED! <br>
+	 Transfer to Brandeis.<br>
+	 
+
+	{{/if}}
+
+  {{else}}
+  Log in please!!
+  {{/if}}
 
 </template>
 
