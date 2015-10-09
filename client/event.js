@@ -35,3 +35,18 @@ Template.event.helpers({
 		return ChatLines.find().count();
 	}
 });
+
+Template.eventitem.events({
+	"click #like": function () {
+      likes = this.likes+1;
+      ChatLines.update(this._id, {
+        $set: {likes:likes}
+      });
+    },
+	"click #dislike": function () {
+      likes = this.likes-1;
+      ChatLines.update(this._id, {
+        $set: {likes:likes}
+      });
+    }
+});
