@@ -10,7 +10,8 @@ Please fill out the following a form if you want to post an event.<br>
 	
 	<form id="eventform">
 		Name: <input type="text" id="eventname" size="100%"> <br>
-		Date: <input type="text" id="eventdate" size="100%"> <br> 
+		Location: <input type="text" id="eventlocation" size="100%"> <br>
+		Date: <input type="datetime" id="eventdate" size="100%"> <br> 
 		<input type= "submit">
 
 	</form>
@@ -45,6 +46,6 @@ Please fill out the following a form if you want to post an event.<br>
 
 <template name="eventitem">
 	<tr>
-		<td>{{who}} said </td> <td>{{eventname}}</td><td> at {{when}}</td>
+		<td>{{eventlocation}}  </td> <td>{{eventname}}</td><td> at {{eventdate}}</td>
 	</tr>
 </template>

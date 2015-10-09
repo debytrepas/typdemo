@@ -1,14 +1,16 @@
 Template.event.events({
-	"submit #chatform": function(event){
+	"submit #eventform": function(event){
 		
 		event.preventDefault();
 		
 		var eventname = $("#eventname").val();
 		var eventdate = $("#eventdate").val();
+		var eventlocation = $("#eventlocation").val();
 		console.log(eventname);
 	
 		$("#eventname").val("");
 		$("#eventdate").val("");
+		$("#eventlocation").val("");
 
 		var profile = Meteor.user().profile;
 		
@@ -17,7 +19,9 @@ Template.event.events({
 				uid:Meteor.userId(),  
 				who:profile["firstName"]+" "+profile["lastName"], 
 				eventname:eventname,
-				when: eventdate
+				eventdate: eventdate,
+				eventlocation: eventlocation 
+
 			};
 			
 		console.dir(chatline);
@@ -28,7 +32,7 @@ Template.event.events({
 
 Template.event.helpers({
 	chatlines: function(){
-		return ChatLines.find({},{limit:10, sort:{when:-1}});
+		return ChatLines.find({},{limit:100, sort:{when:-1}});
 	    },
 
 	numchats: function(){
