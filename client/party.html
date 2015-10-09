@@ -8,10 +8,10 @@
 Please fill out the following a form if you want to post an event.<br>
 	You should fill out a form for each event you want to post. 
 	
-	<form id="eventform">
-		Name: <input type="text" id="eventname" size="100%"> <br>
-		Location: <input type="text" id="eventlocation" size="100%"> <br>
-		Date: <input type="datetime" id="eventdate" size="100%"> <br> 
+	<form id="partyform">
+		Name: <input type="text" id="partyname" size="100%"> <br>
+		Location: <input type="text" id="partylocation" size="100%"> <br>
+		Date: <input type="datetime" id="partydate" size="100%"> <br> 
 		<input type= "submit">
 
 	</form>
@@ -20,8 +20,8 @@ Please fill out the following a form if you want to post an event.<br>
 	<h2>Showing the last 10 of {{numchats}} chats</h2>
 	<table class="table table-bordered">
 		<tbody>
-	{{#each chatlines}}
-	{{> eventitem}}
+	{{#each partylines}}
+	{{> partyitem}}
 	{{/each}}
 
 		</tbody>
@@ -44,8 +44,8 @@ Please fill out the following a form if you want to post an event.<br>
 
 </template>
 
-<template name="eventitem">
+<template name="partyitem">
 	<tr>
-		<td>{{eventlocation}}  </td> <td>{{eventname}}</td><td> at {{eventdate}}</td>
+		<td>{{partylocation}}  </td> <td>{{partyname}}</td><td> at {{partydate}}</td>
 	</tr>
 </template>

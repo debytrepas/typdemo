@@ -1,42 +1,42 @@
-Template.event.events({
-	"submit #eventform": function(event){
+Template.party.evnent({
+	"submit #partyform": function(party){
 		
 		event.preventDefault();
 		
-		var eventname = $("#eventname").val();
-		var eventdate = $("#eventdate").val();
-		var eventlocation = $("#eventlocation").val();
+		var partyname = $("#partyname").val();
+		var partydate = $("#partydate").val();
+		var partylocation = $("#partylocation").val();
 		console.log(eventname);
 	
-		$("#eventname").val("");
-		$("#eventdate").val("");
-		$("#eventlocation").val("");
+		$("#partyname").val("");
+		$("#partydate").val("");
+		$("#partylocation").val("");
 
 		var profile = Meteor.user().profile;
 		
-		var chatline = 
+		var partyline = 
 		  	{
 				uid:Meteor.userId(),  
 				who:profile["firstName"]+" "+profile["lastName"], 
-				eventname:eventname,
-				eventdate: eventdate,
-				eventlocation: eventlocation 
+				eventname:partyname,
+				eventdate: partydate,
+				eventlocation: partylocation 
 
 			};
 			
-		console.dir(chatline);
+		console.dir(partyline);
 		
-		ChatLines.insert(chatline);
+		PartyLines.insert(partyline);
 	}
 });
 
 Template.event.helpers({
 	chatlines: function(){
-		return ChatLines.find({},{limit:100, sort:{when:-1}});
+		return PartyLines.find({},{limit:100, sort:{when:-1}});
 	    },
 
 	numchats: function(){
-		return ChatLines.find().count();
+		return PartyLines.find().count();
 	    },
 
 	brandeisian: function(){
