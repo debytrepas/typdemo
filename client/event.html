@@ -13,6 +13,15 @@
 	
 	<h2>Showing the last 10 of {{numchats}} chats</h2>
   <table class="table table-bordered">
+  	 <thead>
+      <tr>
+        <th>Organizer</th>
+        <th>Event</th>
+        <th>Time</th>
+        <th>Ratings</th>
+        <th>Action</th>
+      </tr>
+    </thead>
 	  <tbody>
 	{{#each chatlines}}
 	{{> eventitem}}
@@ -21,11 +30,16 @@
 </table>
 
 
-
 </template>
 
 <template name="eventitem">
 	<tr>
-		<td>{{who}} said </td> <td>{{eventname}}</td><td> at {{when}}</td>
+		<td>{{who}} said </td>
+		<td>{{eventname}}</td>
+		<td> at {{when}}</td>
+		<td>{{likes}}</td>
+		<td><button type="button" class="btn btn-success btn-xs">Like</button>
+			<button type="button" class="btn btn-danger btn-xs">DisLike</button></td>
+			
 	</tr>
-</template>
+	</template>
