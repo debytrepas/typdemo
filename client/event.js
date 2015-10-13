@@ -19,7 +19,9 @@ Template.event.events({
 				uid:Meteor.userId(),  
 				who:profile["firstName"]+" "+profile["lastName"], 
 				likes:0,
-				when: eventdate
+				when: eventdate,
+				eventname:eventname,
+				eventlocation:eventlocation
 
 				
 

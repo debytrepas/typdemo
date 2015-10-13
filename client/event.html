@@ -9,9 +9,9 @@ Please fill out the following a form if you want to post an event.<br>
 	You should fill out a form for each event you want to post. 
 	
 	<form id="eventform">
-		Name: <input type="text" id="eventname" size="100%"> <br>
-		Location: <input type="text" id="eventlocation" size="100%"> <br>
-		Date: <input type="datetime" id="eventdate" size="100%"> <br> 
+		Eventname: <input type="text" id="eventname" size="100%"> <br>
+		Location:  <input type="text" id="eventlocation" size="100%"> <br>
+		Date:      <input type="datetime" id="eventdate" size="100%"> <br> 
 		<input type= "submit">
 
 	</form>
@@ -29,6 +29,7 @@ Please fill out the following a form if you want to post an event.<br>
         <th>Time</th>
         <th>Ratings</th>
         <th>Action</th>
+        <th>Location</th>
       </tr>
     </thead>
 
@@ -71,7 +72,9 @@ hmmm
 			<button type="button" id="dislike" class="btn btn-danger btn-xs">DisLike</button></td>
 			
 
-		<td>{{eventlocation}}  </td> <td>{{eventname}}</td><td> at {{eventdate}}</td>
+		<td>{{eventlocation}}</td> 
+		
+		
 
 	</tr>
 </template>
