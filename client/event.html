@@ -17,8 +17,22 @@ Please fill out the following a form if you want to post an event.<br>
 	</form>
 
 	
+
 	<h2>Showing the last 100 of {{numchats}} events </h2>
 	<table class="table table-bordered">
+
+
+  	 <thead>
+      <tr>
+        <th>Organizer</th>
+        <th>Event</th>
+        <th>Time</th>
+        <th>Ratings</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+
 		<tbody>
 	{{#each chatlines}}
 	{{> eventitem}}
@@ -27,8 +41,8 @@ Please fill out the following a form if you want to post an event.<br>
 		</tbody>
 	</table>
 
+{{else}}
 
-	{{else}}
 	 
 	 <h3>Only Brandeis folks can see this stuff!! </h3> 
 	 <p style="font-size: 150%">SOCIAL JUSTICE RULES!!!</p>
@@ -36,7 +50,9 @@ Please fill out the following a form if you want to post an event.<br>
 	 Transfer to Brandeis.<br>
 	 
 
-	{{/if}}
+hmmm
+{{/if}}
+	
 
   {{else}}
   Log in please!!
@@ -46,6 +62,16 @@ Please fill out the following a form if you want to post an event.<br>
 
 <template name="eventitem">
 	<tr>
+
+		<td>{{who}} said </td>
+		<td>{{eventname}}</td>
+		<td> at {{when}}</td>
+		<td>{{likes}}</td>
+		<td><button type="button" id="like" class="btn btn-success btn-xs">Like</button>
+			<button type="button" id="dislike" class="btn btn-danger btn-xs">DisLike</button></td>
+			
+
 		<td>{{eventlocation}}  </td> <td>{{eventname}}</td><td> at {{eventdate}}</td>
+
 	</tr>
 </template>

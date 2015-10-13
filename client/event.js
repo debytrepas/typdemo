@@ -18,9 +18,10 @@ Template.event.events({
 		  	{
 				uid:Meteor.userId(),  
 				who:profile["firstName"]+" "+profile["lastName"], 
-				eventname:eventname,
-				eventdate: eventdate,
-				eventlocation: eventlocation 
+				likes:0,
+				when: eventdate
+
+				
 
 			};
 			
@@ -36,12 +37,29 @@ Template.event.helpers({
 	    },
 
 	numchats: function(){
-		return ChatLines.find().count();
-	    },
+		return ChatLines.find().count(); HEAD
+	},
 
 	brandeisian: function(){
 		//var ee = Meteor.user().services.google.email;
 		var ee = Meteor.user().emails[0].address;
 		return ee.substring(ee.length-13) == "@brandeis.edu";
 	     }
+});
+
+Template.eventitem.events({
+	"click #like": function () {
+      likes = this.likes+1;
+      ChatLines.update(this._id, {
+        $set: {likes:likes}
+      });
+    },
+	"click #dislike": function () {
+      likes = this.likes-1;
+      ChatLines.update(this._id, {
+        $set: {likes:likes}
+      });
+
+	}
 })
+
