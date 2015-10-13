@@ -1,14 +1,16 @@
 Template.event.events({
-	"submit #chatform": function(event){
+	"submit #eventform": function(event){
 		
 		event.preventDefault();
 		
 		var eventname = $("#eventname").val();
 		var eventdate = $("#eventdate").val();
+		var eventlocation = $("#eventlocation").val();
 		console.log(eventname);
 	
 		$("#eventname").val("");
 		$("#eventdate").val("");
+		$("#eventlocation").val("");
 
 		var profile = Meteor.user().profile;
 		
@@ -16,9 +18,11 @@ Template.event.events({
 		  	{
 				uid:Meteor.userId(),  
 				who:profile["firstName"]+" "+profile["lastName"], 
-				eventname:eventname,
 				likes:0,
 				when: eventdate
+
+				
+
 			};
 			
 		console.dir(chatline);
@@ -29,10 +33,11 @@ Template.event.events({
 
 Template.event.helpers({
 	chatlines: function(){
-		return ChatLines.find({},{limit:10, sort:{when:-1}});
-	},
+		return ChatLines.find({},{limit:100, sort:{when:-1}});
+	    },
+
 	numchats: function(){
-		return ChatLines.find().count();
+		return ChatLines.find().count(); HEAD
 	}
 });
 
@@ -48,5 +53,13 @@ Template.eventitem.events({
       ChatLines.update(this._id, {
         $set: {likes:likes}
       });
-    }
-});
+
+	},
+
+	brandeisian: function(){
+		//var ee = Meteor.user().services.google.email;
+		var ee = Meteor.user().emails[0].address;
+		return ee.substring(ee.length-13) == "@brandeis.edu";
+	     }
+})
+

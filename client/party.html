@@ -1,0 +1,51 @@
+<template name="party">
+	<h1> Register to post and see an event</h1>
+	
+	{{#if currentUser}}
+	
+
+	{{#if brandeisian}} 
+Please fill out the following a form if you want to post an event.<br>
+	You should fill out a form for each event you want to post. 
+	
+	<form id="partyform">
+		Name: <input type="text" id="partyname" size="100%"> <br>
+		Location: <input type="text" id="partylocation" size="100%"> <br>
+		Date: <input type="datetime" id="partydate" size="100%"> <br> 
+		<input type= "submit">
+
+	</form>
+
+	
+	<h2>Showing the last 10 of {{numchats}} chats</h2>
+	<table class="table table-bordered">
+		<tbody>
+	{{#each partylines}}
+	{{> partyitem}}
+	{{/each}}
+
+		</tbody>
+	</table>
+
+
+	{{else}}
+	 
+	 <h3>Only Brandeis folks can see this stuff!! </h3> 
+	 <p style="font-size: 150%">SOCIAL JUSTICE RULES!!!</p>
+	 NO INTRUDERS ALLOWED! <br>
+	 Transfer to Brandeis.<br>
+	 
+
+	{{/if}}
+
+  {{else}}
+  Log in please!!
+  {{/if}}
+
+</template>
+
+<template name="partyitem">
+	<tr>
+		<td>{{partylocation}}  </td> <td>{{partyname}}</td><td> at {{partydate}}</td>
+	</tr>
+</template>
