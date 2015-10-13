@@ -38,7 +38,13 @@ Template.event.helpers({
 
 	numchats: function(){
 		return ChatLines.find().count(); HEAD
-	}
+	},
+
+	brandeisian: function(){
+		//var ee = Meteor.user().services.google.email;
+		var ee = Meteor.user().emails[0].address;
+		return ee.substring(ee.length-13) == "@brandeis.edu";
+	     }
 });
 
 Template.eventitem.events({
@@ -54,12 +60,6 @@ Template.eventitem.events({
         $set: {likes:likes}
       });
 
-	},
-
-	brandeisian: function(){
-		//var ee = Meteor.user().services.google.email;
-		var ee = Meteor.user().emails[0].address;
-		return ee.substring(ee.length-13) == "@brandeis.edu";
-	     }
+	}
 })
 
