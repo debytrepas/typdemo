@@ -1,4 +1,4 @@
-Template.party.evnent({
+Template.party.events({
 	"submit #partyform": function(party){
 		
 		event.preventDefault();
