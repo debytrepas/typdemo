@@ -30,7 +30,7 @@ Template.party.events({
 	}
 });
 
-Template.event.helpers({
+Template.party.helpers({
 	chatlines: function(){
 		return PartyLines.find({},{limit:100, sort:{when:-1}});
 	    },
@@ -38,6 +38,7 @@ Template.event.helpers({
 	numchats: function(){
 		return PartyLines.find().count();
 	    },
+
 
 	brandeisian: function(){
 		//var ee = Meteor.user().services.google.email;

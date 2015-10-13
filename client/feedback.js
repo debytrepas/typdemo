@@ -23,7 +23,7 @@ Template.feedback.events({
 	}
 });
 
-Template.event.helpers({
+Template.feedback.helpers({
 	commentlines: function(){
 		return CommentLines.find({},{limit:10, sort:{when:-1}});
 	},
