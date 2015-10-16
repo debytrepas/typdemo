@@ -6,7 +6,7 @@ Template.party.events({
 		var partyname = $("#partyname").val();
 		var partydate = $("#partydate").val();
 		var partylocation = $("#partylocation").val();
-		console.log(eventname);
+		console.log(partyname);
 	
 		$("#partyname").val("");
 		$("#partydate").val("");
@@ -18,9 +18,9 @@ Template.party.events({
 		  	{
 				uid:Meteor.userId(),  
 				who:profile["firstName"]+" "+profile["lastName"], 
-				eventname:partyname,
-				eventdate: partydate,
-				eventlocation: partylocation 
+				partyname:partyname,
+				partydate: partydate,
+				partylocation: partylocation 
 
 			};
 			
@@ -31,11 +31,11 @@ Template.party.events({
 });
 
 Template.party.helpers({
-	chatlines: function(){
+	partylines: function(){
 		return PartyLines.find({},{limit:100, sort:{when:-1}});
 	    },
 
-	numchats: function(){
+	numcparties: function(){
 		return PartyLines.find().count();
 	    },
 

@@ -19,6 +19,17 @@ Please fill out the following a form if you want to post an event.<br>
 	
 	<h2>Showing the last 10 of {{numchats}} chats</h2>
 	<table class="table table-bordered">
+
+		<thead>
+      <tr>
+        <th>Organizer</th>
+        <th>Event</th>
+        <th>Time</th>
+        <th>Ratings</th>
+        <th>Location</th>
+      </tr>
+    </thead>
+
 		<tbody>
 	{{#each partylines}}
 	{{> partyitem}}
