@@ -1,10 +1,10 @@
-Template.feedback.events({
+Template.chat.events({
 	"submit #feedbackform": function(event){
 		
 		event.preventDefault();
 		
-		var comments = $("#comments").val();
-	
+		var x = $("#comments").val()
+		
 		$("#comments").val("");
 
 		var profile = Meteor.user().profile;
@@ -25,9 +25,16 @@ Template.feedback.events({
 
 Template.feedback.helpers({
 	commentlines: function(){
-		return CommentLines.find({},{limit:10, sort:{when:-1}});
+		return ChatLines.find({},{limit:10, sort:{when:-1}});
 	},
 	numcomments: function(){
 		return CommentLines.find().count();
+	},
+	ofTen: function(){
+		var available = CommentLines.find().count();
+		if (available > 10)
+			return 10;
+		else
+			return available;
 	}
 });

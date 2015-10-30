@@ -1,31 +1,42 @@
-
 <template name="feedback">
-<p> Hi everyone, I hope you had a great time at the the party. Now, we at So'Deis, want to make your experience memorable! Did you had a bad experience? Did you had the best time of your life? Please let's us know, so that next time it will be even more memorable.</p>
-
-{{#if currentUser}}
-<form id="feedbackform">
-		Comments: <input type="text" id="comments" size="100%"> <br>
-		<input type= "submit">
-</form>
+	<div class="jumbotron">
+		<h1>Feedback</h1>
+		<p> 
+		Hi everyone, I hope you had a great time at the party. Now, we at So'Deis, want to make your experience memorable! Did you had a bad experience? Did you had the best time of your life? Please let's us know, so that next time it will be even more memorable.
+		</p>
+	</div>
+	{{#if currentUser}}
+	<form id="feedbackform">
+		<div class="input-group">
+		  <span class="input-group-addon" id="basic-addon1"><i class="fa fa-commenting-o"></i></span>
+		  <input type="text" id="comments" class="form-control" placeholder="Enter your comment text here" size="100%" aria-describedby="basic-addon1">
+		</div>
+	</form>
 	{{else}}
-	You must be signed in to post comments!
+	<div class="alert alert-danger alert-dismissible" role="alert">
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	  <i class="fa fa-info-circle red"></i> You must be logged in to create comments!
+	</div>
 	{{/if}}
-	
-	<h2> Comments</h2>
-  <table class="table table-bordered">
-	  <tbody>
-	{{#each commentlines}}
-	{{> commentitem}}
-	{{/each}}
-</tbody>
-</table>
-
-
+	<br>
+	<div class="panel panel-primary">
+	  <div class="panel-heading">
+	  	<h5>Showing the last {{ofTen}} of {{numcomments}} comments</h5>
+	  </div>
+	  <div class="panel-body list-group">
+	  	{{#each commentlines}}
+		{{> commentitem}}
+		{{/each}}
+	  </div>
+	</div>
 
 </template>
 
+
+
 <template name="commentitem">
-	<tr>
-		<td>{{who}} said </td> <td>{{comments}}</td><td> at {{when}}</td>
-	</tr>
+	<div class="list-group-item">
+    <p class="list-group-item-text">{{what}}</p>
+    <h6 class="list-group-item-heading text-muted"><i class="fa fa-user"></i> {{who}} <i class="fa fa-calendar"></i> {{when}}</h6>
+  </div>
 </template>
