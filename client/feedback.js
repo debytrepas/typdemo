@@ -1,4 +1,4 @@
-Template.chat.events({
+Template.feedback.events({
 	"submit #feedbackform": function(event){
 		
 		event.preventDefault();

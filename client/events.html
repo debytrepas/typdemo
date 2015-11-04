@@ -1,0 +1,88 @@
+<template name="events">	
+	{{#if currentUser}}
+
+	<form id="eventform" class="bg-info">
+		<div class="input-group">
+		  <span class="input-group-addon">Name</span>
+		  <input type="text" id="eventname" class="form-control">
+		</div>
+		<div class="input-group">
+		  <span class="input-group-addon">Organizer</span>
+		  <input type="text" id="organizer" class="form-control">
+		</div>
+		<div class="input-group">
+		  <span class="input-group-addon">Location</span>
+		  <input type="text" id="eventlocation" class="form-control">
+		</div>
+		<div class="input-group">
+		  <span class="input-group-addon">Date & Time</span>
+		  <input type="text" id="date_time" class="form-control">
+		</div>
+
+		<div class="input-group">
+		  <span class="input-group-addon">Event Type</span>
+		  <select class="form-control" name="type" id="type">
+		  	<option value="">Select Event Type</option>
+		  	<option value="Conference">Conference</option>
+		  	<option value="Lecture">Lecture</option>
+		  	<option value="Workshop">Workshop</option>
+		  	<option value="Club Event">Club Event</option>
+		  	<option value="Sports">Sports</option>
+		  	<option value="Community Service">Community Service</option>
+		  	<option value="Career Fair">Career Fair</option>
+		  	<option value="Industry Visit">Industry Visit</option>
+		  	<option value="Festival">Festival</option>
+		  	<option value="Other">Other</option>
+		  </select>
+		</div>
+		<div class="input-group">
+		  <span class="input-group-addon">Info</span>
+		  <textarea id="info" class="form-control" placeholder="Event Details (Optional)"></textarea>
+		</div>
+		<div class="input-group text-center">
+		  <button type="submit" class="btn btn-success"><i class="fa fa-paper-plane-o"></i> Submit</button>
+		</div>
+	</form>
+
+		<br>
+	<div class="panel panel-danger">
+	  <div class="panel-heading">
+	  	<h5>Events {{numevents}}</h5>
+	  </div>
+	  <div class="panel-body list-group">
+	  	{{#each eventsList}}
+		{{> event}}
+		{{/each}}
+	  </div>
+	</div>
+
+	{{else}}
+	<div class="alert alert-danger alert-dismissible" role="alert">
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	  <i class="fa fa-info-circle red"></i> You must be logged in to create or view posts!
+	</div>
+	{{/if}}
+
+</template>
+
+<template name="event">
+	<div class="list-group-item">
+		<a href="/events/{{_id}}">
+			<h5 class="list-group-item-heading">{{eventname}}</h5>
+		</a>
+	    <p class="list-group-item-text">{{info}}</p>
+	    
+	    <p class="list-group-item-text post-details">
+		    <span class="badge">{{type}}</span> <i class="fa fa-ellipsis-v"></i>
+		    <i class="fa fa-user"></i> {{organizer}} <i class="fa fa-ellipsis-v"></i> 
+		    <i class="fa fa-comments"></i> {{numcomments}} comments <i class="fa fa-ellipsis-v"></i> 
+		    <i class="fa fa-calendar"></i> {{date_time}} <i class="fa fa-ellipsis-v"></i> 
+		    <i class="fa fa-map-marker"></i> {{location}} <i class="fa fa-ellipsis-v"></i> 
+		    <button type="button" id="attendButton" title="Click if you'll attend!" class="btn btn-success btn-xs">{{attendance}} <i class="fa fa-calendar-check-o"></i> Attending</button> <i class="fa fa-ellipsis-v"></i> 
+		    <button type="button" id="notattendButton" title="Click if you won't attend!" class="btn btn-danger btn-xs"><i class="fa fa-calendar-times-o"></i>Not Attending</button>
+		    {{#if authorized}}
+		    	<button type="button" id="delete" title="Delete Post!" class="btn btn-danger btn-xs pull-right"><i class="fa fa-trash-o"></i> Delete Event</button>
+		    {{/if}}
+	    </p>
+  </div>
+</template>
