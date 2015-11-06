@@ -1,40 +1,31 @@
-Template.feedback.events({
+Template.feedbackPage.events({
 	"submit #feedbackform": function(event){
 		
 		event.preventDefault();
 		
-		var x = $("#comments").val()
+		var x = $("#feedback").val()
 		
-		$("#comments").val("");
+		$("#feedback").val("");
 
 		var profile = Meteor.user().profile;
 		
-		var commentline = 
+		var feedback = 
 		  	{
 				uid:Meteor.userId(),  
 				who:profile["firstName"]+" "+profile["lastName"], 
-				comments: comments,
+				feedback: x,
 				when: new Date()
 			};
-			
-		console.dir(commentline);
-		
-		CommentLines.insert(commentline);
+					
+		Feedbacks.insert(feedback);
 	}
 });
 
-Template.feedback.helpers({
-	commentlines: function(){
-		return ChatLines.find({},{limit:10, sort:{when:-1}});
+Template.feedbackPage.helpers({
+	feedbacks: function(){
+		return Feedbacks.find({},{limit:10, sort:{when:-1}});
 	},
-	numcomments: function(){
-		return CommentLines.find().count();
-	},
-	ofTen: function(){
-		var available = CommentLines.find().count();
-		if (available > 10)
-			return 10;
-		else
-			return available;
+	numfeedbacks: function(){
+		return Feedbacks.find().count();
 	}
 });
