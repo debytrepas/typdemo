@@ -41,15 +41,46 @@ Template.events.helpers({
 
 	numevents: function(){
 		return Events.find().count();
-	},
-
-	brandeisian: function(){
-		//var ee = Meteor.user().services.google.email;
-		var ee = Meteor.user().emails[0].address;
-		return ee.substring(ee.length-13) == "@brandeis.edu";
 	}
 });
 
-Template.event.events({
+Template.event.helpers({
+	attendance_count: function () {
+		return this.attendance.length;
+	},
+	authorized: function () {
+		return this.userId == Meteor.userId();
+	}
+
 })
 
+Template.event.events({
+	"click #attendButton": function () {
+      var attendance = this.attendance;
+      var index = attendance.indexOf(Meteor.userId());
+      if (index < 0) {
+      	attendance.push(Meteor.userId());
+      }
+      Events.update(this._id, {
+  		$set: {attendance:attendance}
+  	  });
+    },
+
+	"click #notattendButton": function () {
+	  var attendance = this.attendance;
+      var index = attendance.indexOf(Meteor.userId());
+      if (index >= 0) {
+      	attendance.splice(index, 1);
+      }
+      Events.update(this._id, {
+  		$set: {attendance:attendance}
+  	  });
+    },
+    "click #delete": function () {
+    	Meteor.call("deleteEvent", this._id);
+    }
+});
+
+Template.events.onRendered(function() {
+    this.$('.datetimepicker').datetimepicker();
+});

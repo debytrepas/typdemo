@@ -14,9 +14,9 @@
 		  <span class="input-group-addon">Location</span>
 		  <input type="text" id="eventlocation" class="form-control">
 		</div>
-		<div class="input-group">
-		  <span class="input-group-addon">Date & Time</span>
-		  <input type="text" id="date_time" class="form-control">
+		<div class="input-group datetimepicker">
+		    <span class="input-group-addon"><i class="fa fa-calendar"></i> Date & Time</span>
+		    <input class="set-due-date form-control" id="date_time" placeholder="Click on the calendar icon then pick date and time." type="text"/>
 		</div>
 
 		<div class="input-group">
@@ -32,6 +32,7 @@
 		  	<option value="Career Fair">Career Fair</option>
 		  	<option value="Industry Visit">Industry Visit</option>
 		  	<option value="Festival">Festival</option>
+		  	<option value="Party">Party</option>
 		  	<option value="Other">Other</option>
 		  </select>
 		</div>
@@ -59,7 +60,7 @@
 	{{else}}
 	<div class="alert alert-danger alert-dismissible" role="alert">
 	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	  <i class="fa fa-info-circle red"></i> You must be logged in to create or view posts!
+	  <i class="fa fa-info-circle red"></i> You must be logged in to create or view events!
 	</div>
 	{{/if}}
 
@@ -78,7 +79,7 @@
 		    <i class="fa fa-comments"></i> {{numcomments}} comments <i class="fa fa-ellipsis-v"></i> 
 		    <i class="fa fa-calendar"></i> {{date_time}} <i class="fa fa-ellipsis-v"></i> 
 		    <i class="fa fa-map-marker"></i> {{location}} <i class="fa fa-ellipsis-v"></i> 
-		    <button type="button" id="attendButton" title="Click if you'll attend!" class="btn btn-success btn-xs">{{attendance}} <i class="fa fa-calendar-check-o"></i> Attending</button> <i class="fa fa-ellipsis-v"></i> 
+		    <button type="button" id="attendButton" title="Click if you'll attend!" class="btn btn-success btn-xs">{{attendance_count}} <i class="fa fa-calendar-check-o"></i> Attending</button> <i class="fa fa-ellipsis-v"></i> 
 		    <button type="button" id="notattendButton" title="Click if you won't attend!" class="btn btn-danger btn-xs"><i class="fa fa-calendar-times-o"></i>Not Attending</button>
 		    {{#if authorized}}
 		    	<button type="button" id="delete" title="Delete Post!" class="btn btn-danger btn-xs pull-right"><i class="fa fa-trash-o"></i> Delete Event</button>
