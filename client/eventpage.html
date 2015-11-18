@@ -1,11 +1,49 @@
 <template name="eventPage">
-<html>
-<thead>
-  <h1>Comment</h1>
-</thead>
-<tbody>
+	{{> currentEvent}}
+	<form id="commentform">
+		<div class="input-group">
+		  <span class="input-group-addon">New Comment</span>
+		  <input type="text" id="comment-body" class="form-control" size="100%">
+		</div>
+	</form>
+	<br>
+	<div class="panel panel-primary">
+	  <div class="panel-heading">
+	  	<h5>Event Comments <span class="badge">{{numcomments}}</span></h5>
+	  </div>
+	  <div class="panel-body list-group">
+	  	{{#each comments}}
+		{{> comment}}
+		{{/each}}
+	  </div>
+	</div>
+</template>
 
 
-</tbody>
-</html>
+<template name="currentEvent">
+	<div class="list-group-item">
+		<h5 class="list-group-item-heading">{{eventname}}</h5>
+	    <p class="list-group-item-text">{{info}}</p>
+	    
+	    <p class="list-group-item-text post-details">
+		    <span class="badge">{{type}}</span> <i class="fa fa-ellipsis-v"></i>
+		    <i class="fa fa-user"></i> {{organizer}} <i class="fa fa-ellipsis-v"></i> 
+		    <i class="fa fa-comments"></i> {{numcomments}} comments <i class="fa fa-ellipsis-v"></i> 
+		    <i class="fa fa-calendar"></i> {{date_time}} <i class="fa fa-ellipsis-v"></i> 
+		    <i class="fa fa-map-marker"></i> {{location}} <i class="fa fa-ellipsis-v"></i> 
+		    <button type="button" id="attendButton" title="Click if you'll attend!" class="btn btn-success btn-xs">{{attendance_count}} <i class="fa fa-calendar-check-o"></i> Attending</button> <i class="fa fa-ellipsis-v"></i> 
+		    <button type="button" id="notattendButton" title="Click if you won't attend!" class="btn btn-danger btn-xs"><i class="fa fa-calendar-times-o"></i>Not Attending</button>
+	    </p>
+  </div>
+</template>
+
+<template name="comment">
+	<div class="list-group-item">
+    <p class="list-group-item-text">{{body}}</p>
+    <h6 class="list-group-item-heading text-muted"><i class="fa fa-user"></i> {{who}} <i class="fa fa-calendar"></i> {{when}}
+    {{#if authorized}}
+    	<button type="button" id="delete" title="Delete Post!" class="btn btn-danger btn-xs pull-right"><i class="fa fa-trash-o"></i> Delete</button>
+    {{/if}}
+    </h6>
+  </div>
 </template>

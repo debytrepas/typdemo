@@ -50,8 +50,10 @@ Template.event.helpers({
 	},
 	authorized: function () {
 		return this.userId == Meteor.userId();
+	},
+	numcomments: function() {
+		return Comments.find({eventId:this._id},{}).count();
 	}
-
 })
 
 Template.event.events({
