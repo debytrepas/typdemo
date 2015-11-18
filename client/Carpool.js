@@ -1,5 +1,5 @@
 Template.events.events({
-	"submit #mapform": function(event){
+	"submit #eventform": function(event){
 		
 		event.preventDefault();
 		
@@ -7,16 +7,12 @@ Template.events.events({
 		var date_time = $("#date_time").val();
 		var location = $("#eventlocation").val();
 		var organizer = $("#organizer").val();
-		var type = $("#type").val();
-		var info = $("#info").val();
 	
 		$("#eventname").val("");
 		$("#date_time").val("");
 		$("#eventlocation").val("");
 		$("#organizer").val("");
-		$("#info").val("");
-		$("#type").val("");
-
+		
 		var profile = Meteor.user().profile;
 		
 		var event = {
@@ -52,6 +48,7 @@ Template.event.helpers({
 		return this.userId == Meteor.userId();
 	}
 
+	
 })
 
 Template.event.events({

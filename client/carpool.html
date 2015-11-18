@@ -8,7 +8,67 @@
 		</div>	
 			<div class="jumbotron" id="c2">
 				<p2> Were all going to the same place so why not carpool? Not only will you keep underclassman from walking in the snow you will have a group to go to the party with. 
-				</p2>
+				</p2>	
+	{{#if currentUser}}
+
+	<form id="eventform" class="bg-danger">
+		<div class="input-group">
+		  <span class="input-group-addon">Contat Information</span>
+		  <input type="text" id="eventname" class="form-control">
+		</div>
+		<div class="input-group">
+		  <span class="input-group-addon">Event</span>
+		  <input type="text" id="date_time" class="form-control">
+		</div>
+		<div class="input-group datetimepicker">
+		    <span class="input-group-addon"> Time You Want To Leave</span>
+		    <input class="set-due-date form-control" id="eventlocation" type="text"/>
+		</div>
+
+		<div class="input-group">
+		  <span class="input-group-addon">Residance Halls</span>
+		  <select class="form-control" name="type" id="type">
+		  	<option value="">Select Resident Hall</option>
+		  	<option value="North Quad">North Quad</option>
+		  	<option value="Massell">Massell</option>
+		  	<option value="East">East</option>
+		  	<option value="The Castle">The Castle</option>
+		  	<option value="Rosenthal">Rosenthal</option>
+		  	<option value="The Village">The Village</option>
+		  	<option value="Ridgewood">Ridegwood</option>
+		  	<option value="Ziv">Ziv</option>
+		  	<option value="Charles River Apartments">Charles River Apartments</option>
+		  </select>
+		</div>
+		<div class="input-group">
+		  <span class="input-group-addon">Extra Information</span>
+		  <textarea id="organizer" class="form-control" ></textarea>
+		</div>
+		<div class="input-group text-center">
+		  <button type="submit" class="btn btn-success"><i class="fa fa-paper-plane-o"></i> Submit</button>
+		</div>
+	</form>
+
+		<br>
+	<div class="panel panel-danger">
+	  <div class="panel-heading">
+	  	<h5>Drivers {{numevents}}</h5>
+	  </div>
+	  <div class="panel-body list-group">
+	  	{{#each eventsList}}
+		{{> event}}
+		{{/each}}
+	  </div>
+	</div>
+
+	{{else}}
+	<div class="alert alert-danger alert-dismissible" role="alert">
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	  <i class="fa fa-info-circle red"></i> You must be logged in to create or view events!
+	</div>
+	{{/if}}
+
+
 			</div>
 	</div> 
 </template>
