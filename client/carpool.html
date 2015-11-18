@@ -1,62 +1,68 @@
 <template name="carpool">
-	<div id="car">
-		<div class="jumbotron">
-		<h1>Carpool</h1>
-		<p1 id="c1">
-		Do it for the enviornmet
-		</p1> 
-		</div>	
-			<div class="jumbotron" id="c2">
-				<p2> Were all going to the same place so why not carpool? Not only will you keep underclassman from walking in the snow you will have a group to go to the party with. 
-				</p2>	
 	{{#if currentUser}}
-
-	<form id="eventform" class="bg-danger">
-		<div class="input-group">
-		  <span class="input-group-addon">Contat Information</span>
-		  <input type="text" id="eventname" class="form-control">
-		</div>
-		<div class="input-group">
-		  <span class="input-group-addon">Event</span>
-		  <input type="text" id="date_time" class="form-control">
-		</div>
-		<div class="input-group datetimepicker">
-		    <span class="input-group-addon"> Time You Want To Leave</span>
-		    <input class="set-due-date form-control" id="eventlocation" type="text"/>
-		</div>
-
-		<div class="input-group">
-		  <span class="input-group-addon">Residance Halls</span>
-		  <select class="form-control" name="type" id="type">
-		  	<option value="">Select Resident Hall</option>
-		  	<option value="North Quad">North Quad</option>
-		  	<option value="Massell">Massell</option>
-		  	<option value="East">East</option>
-		  	<option value="The Castle">The Castle</option>
-		  	<option value="Rosenthal">Rosenthal</option>
-		  	<option value="The Village">The Village</option>
-		  	<option value="Ridgewood">Ridegwood</option>
-		  	<option value="Ziv">Ziv</option>
-		  	<option value="Charles River Apartments">Charles River Apartments</option>
-		  </select>
-		</div>
-		<div class="input-group">
-		  <span class="input-group-addon">Extra Information</span>
-		  <textarea id="organizer" class="form-control" ></textarea>
-		</div>
-		<div class="input-group text-center">
-		  <button type="submit" class="btn btn-success"><i class="fa fa-paper-plane-o"></i> Submit</button>
-		</div>
-	</form>
+		<div class="jumbotron row">
+			<div class="col-md-6">
+				<h1>Carpool</h1>
+				<p1 id="c1">
+				Do it for the enviornmet
+				</p1>
+				<p2> Were all going to the same place so why not carpool? Not only will you keep underclassman from walking in the snow you will have a group to go to the party with. 
+				</p2>
+			</div>
+			<div class="col-md-6">
+				<form id="eventform" class="bg-danger">
+					<div class="input-group">
+					  <span class="input-group-addon">Contat Information</span>
+					  <input type="text" id="contact" class="form-control">
+					</div>
+					<div class="input-group">
+					  <span class="input-group-addon">Event</span>
+					  <input type="text" id="date_time" class="form-control">
+					</div>
+					<div class="input-group datetimepicker">
+					    <span class="input-group-addon"> Time You Want To Leave</span>
+					    <input class="set-due-date form-control" id="eventlocation" type="text"/>
+					</div>
+					<div class="input-group">
+					    <span class="input-group-addon"> Number of passengers you can take</span>
+					    <input type="text" id="passenger_count" class="form-control">
+					</div>
+					<div class="input-group">
+					  <span class="input-group-addon">Residance Halls</span>
+					  <select class="form-control" name="type" id="type">
+					  	<option value="">Select Resident Hall</option>
+					  	<option value="North Quad">North Quad</option>
+					  	<option value="Massell">Massell</option>
+					  	<option value="East">East</option>
+					  	<option value="The Castle">The Castle</option>
+					  	<option value="Rosenthal">Rosenthal</option>
+					  	<option value="The Village">The Village</option>
+					  	<option value="Ridgewood">Ridegwood</option>
+					  	<option value="Ziv">Ziv</option>
+					  	<option value="Charles River Apartments">Charles River Apartments</option>
+					  </select>
+					</div>
+					<div class="input-group">
+					  <span class="input-group-addon">Extra Information</span>
+					  <textarea id="organizer" class="form-control" ></textarea>
+					</div>
+					<div class="input-group text-center">
+					  <button type="submit" class="btn btn-success"><i class="fa fa-paper-plane-o"></i> Submit</button>
+					</div>
+				</form>
+			</div>
+			
+		</div>	
+	
 
 		<br>
-	<div class="panel panel-danger">
+	<div class="panel panel-success">
 	  <div class="panel-heading">
 	  	<h5>Drivers {{numevents}}</h5>
 	  </div>
 	  <div class="panel-body list-group">
-	  	{{#each eventsList}}
-		{{> event}}
+	  	{{#each drivers}}
+		{{> driver}}
 		{{/each}}
 	  </div>
 	</div>
@@ -64,11 +70,25 @@
 	{{else}}
 	<div class="alert alert-danger alert-dismissible" role="alert">
 	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	  <i class="fa fa-info-circle red"></i> You must be logged in to create or view events!
+	  <i class="fa fa-info-circle red"></i> You must be logged in to create or view drivers!
 	</div>
 	{{/if}}
 
+</template>
 
-			</div>
-	</div> 
+<template name="driver">
+	<div class="list-group-item">
+		<h5 class="list-group-item-heading">{{eventname}}</h5>
+	    <p class="list-group-item-text">{{info}}</p>
+	    
+	    <p class="list-group-item-text post-details">
+		    <span class="badge">{{type}}</span> <i class="fa fa-ellipsis-v"></i>
+		    <i class="fa fa-user"></i> {{organizer}} <i class="fa fa-ellipsis-v"></i> 
+		    <i class="fa fa-comments"></i> {{numcomments}} comments <i class="fa fa-ellipsis-v"></i> 
+		    <i class="fa fa-calendar"></i> {{date_time}} <i class="fa fa-ellipsis-v"></i> 
+		    <i class="fa fa-map-marker"></i> {{location}} <i class="fa fa-ellipsis-v"></i> 
+		    <button type="button" id="attendButton" title="Click if you'll attend!" class="btn btn-success btn-xs">{{attendance_count}} <i class="fa fa-calendar-check-o"></i> Attending</button> <i class="fa fa-ellipsis-v"></i> 
+		    <button type="button" id="notattendButton" title="Click if you won't attend!" class="btn btn-danger btn-xs"><i class="fa fa-calendar-times-o"></i>Not Attending</button>
+	    </p>
+  	</div>
 </template>
