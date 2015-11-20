@@ -59,25 +59,25 @@
 				</p2>
 			</div>
 			<div class="col-md-6">
-				<form id="eventform" class="bg-danger">
+				<form id="driverform" class="bg-danger">
 					<div class="input-group">
-					  <span class="input-group-addon">Contat Information</span>
+					  <span class="input-group-addon">Contact Information</span>
 					  <input type="text" id="contact" class="form-control">
 					</div>
 					<div class="input-group">
 					  <span class="input-group-addon">Event</span>
-					  <input type="text" id="date_time" class="form-control">
+					  <input type="text" id="eventname" class="form-control">
 					</div>
 					<div class="input-group datetimepicker">
-					    <span class="input-group-addon"> Time You Want To Leave</span>
-					    <input class="set-due-date form-control" id="eventlocation" type="text"/>
+					    <span class="input-group-addon"> Departure</span>
+					    <input class="set-due-date form-control" id="date_time" type="text"/>
 					</div>
 					<div class="input-group">
-					    <span class="input-group-addon"> Number of passengers you can take</span>
+					    <span class="input-group-addon"> Maximum passengers</span>
 					    <input type="text" id="passenger_count" class="form-control">
 					</div>
 					<div class="input-group">
-					  <span class="input-group-addon">Residance Halls</span>
+					  <span class="input-group-addon">Residance Quads</span>
 					  <select class="form-control" name="type" id="type">
 					  	<option value="">Select Resident Hall</option>
 					  	<option value="North Quad">North Quad</option>
@@ -86,7 +86,7 @@
 					  	<option value="The Castle">The Castle</option>
 					  	<option value="Rosenthal">Rosenthal</option>
 					  	<option value="The Village">The Village</option>
-					  	<option value="Ridgewood">Ridegwood</option>
+					  	<option value="Ridgewood">Ridgewood</option>
 					  	<option value="Ziv">Ziv</option>
 					  	<option value="Charles River Apartments">Charles River Apartments</option>
 					  </select>
@@ -108,10 +108,10 @@
 		<br>
 	<div class="panel panel-success">
 	  <div class="panel-heading">
-	  	<h5>Drivers {{numevents}}</h5>
+	  	<h5>Drivers {{numdrivers}}</h5>
 	  </div>
 	  <div class="panel-body list-group">
-	  	{{#each drivers}}
+	  	{{#each driversList}}
 		{{> driver}}
 		{{/each}}
 	  </div>
@@ -133,7 +133,7 @@
 	    
 	    <p class="list-group-item-text post-details">
 		    <span class="badge">{{type}}</span> <i class="fa fa-ellipsis-v"></i>
-		    <i class="fa fa-user"></i> {{organizer}} <i class="fa fa-ellipsis-v"></i> 
+		    <i class="fa fa-user"></i> {{driver}} <i class="fa fa-ellipsis-v"></i> 
 		    <i class="fa fa-comments"></i> {{numcomments}} comments <i class="fa fa-ellipsis-v"></i> 
 		    <i class="fa fa-calendar"></i> {{date_time}} <i class="fa fa-ellipsis-v"></i> 
 		    <i class="fa fa-map-marker"></i> {{location}} <i class="fa fa-ellipsis-v"></i> 

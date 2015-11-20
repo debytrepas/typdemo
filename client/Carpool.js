@@ -1,46 +1,53 @@
-Template.events.events({
-	"submit #eventform": function(event){
+Template.carpool.events({
+	"submit #driverform": function(event){
 		
 		event.preventDefault();
 		
+		var contactname = $("#contact").val();
 		var eventname = $("#eventname").val();
 		var date_time = $("#date_time").val();
-		var location = $("#eventlocation").val();
-		var organizer = $("#organizer").val();
+		var passenger_count = $("#passenger_count").val();
+		var type = $("#type").val();
+		var info = $("#organizer").val();
+		
 	
+		$("#contact").val("");
 		$("#eventname").val("");
 		$("#date_time").val("");
-		$("#eventlocation").val("");
+		$("#passenger_count").val("");
+		$("#type").val("");
 		$("#organizer").val("");
 		
 		var profile = Meteor.user().profile;
 		
-		var event = {
-				userId:Meteor.userId(),  
-				organizer:organizer, 
-				attendance:[],
+		var carpool = {
+				userId:Meteor.userId(), 
+				driver: contactname, 
 				date_time: date_time,
-				type:type,
+				quad:type,
 				eventname:eventname,
-				location:location,
+				attendence:[],
+				passenger_count:passenger_count,
 				info:info
 			};
-		console.dir(event);	
-		Events.insert(event);
+			console.log("in submit event");
+			console.dir(carpool);
+		//console.dir(carpool);	
+		Carpool.insert(carpool);
 	}
 });
 
-Template.events.helpers({
-	eventsList: function(){
-		return Events.find({},{sort:{date_time:-1}});
+Template.carpool.helpers({
+	driversList: function(){
+		return Carpool.find({},{sort:{date_time:-1}});
 	    },
 
-	numevents: function(){
-		return Events.find().count();
+	numdrivers: function(){
+		return Carpool.find().count();
 	}
 });
 
-Template.event.helpers({
+Template.carpool.helpers({
 	attendance_count: function () {
 		return this.attendance.length;
 	},
@@ -51,7 +58,7 @@ Template.event.helpers({
 	
 })
 
-Template.event.events({
+Template.carpool.events({
 	"click #attendButton": function () {
       var attendance = this.attendance;
       var index = attendance.indexOf(Meteor.userId());
