@@ -3,15 +3,13 @@
 		<div class="jumbotron">
 		<h1>Carpool</h1>
 		<p1 id="c1">
-		Do it for the enviornmet
+		 Were all going to the same place so why not carpool? Not only will you keep underclassman from walking in the snow you will have a group to go to the party with. 
 		</p1> 
 		</div>	
 			<div class="jumbotron" id="c2">
-				<p2> Were all going to the same place so why not carpool? Not only will you keep underclassman from walking in the snow you will have a group to go to the party with. 
-				</p2>	
 	{{#if currentUser}}
 
-	<form id="eventform" class="bg-danger">
+	<form id="eventform" class="bg-success">
 		<div class="input-group">
 		  <span class="input-group-addon">Contat Information</span>
 		  <input type="text" id="eventname" class="form-control">
@@ -50,7 +48,7 @@
 	</form>
 
 		<br>
-	<div class="panel panel-danger">
+	<div class="panel panel-success">
 	  <div class="panel-heading">
 	  	<h5>Drivers {{numevents}}</h5>
 	  </div>
@@ -62,7 +60,7 @@
 	</div>
 
 	{{else}}
-	<div class="alert alert-danger alert-dismissible" role="alert">
+	<div class="bg-success" role="success">
 	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	  <i class="fa fa-info-circle red"></i> You must be logged in to create or view events!
 	</div>
