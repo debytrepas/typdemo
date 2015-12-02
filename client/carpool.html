@@ -11,18 +11,27 @@
 				</p2>
 			</div>
 			<div class="col-md-6">
+			{{#if currentUser}}
 				<form id="driverform" class="bg-danger">
 					<div class="input-group">
-					  <span class="input-group-addon">Contact Information</span>
-					  <input type="text" id="contact" class="form-control">
+					  <span class="input-group-addon">Driver's Name</span>
+					  <input type="text" id="contact" value={{username}} class="form-control">
+					</div>
+					<div class="input-group">
+					  <span class="input-group-addon">Email</span>
+					  <input type="text" id="email" class="form-control">
+					</div>
+					<div class="input-group">
+					  <span class="input-group-addon">Phone Number</span>
+					  <input type="text" id="phone_number" class="form-control">
 					</div>
 					<div class="input-group">
 					  <span class="input-group-addon">Event</span>
 					  <input type="text" id="eventname" class="form-control">
 					</div>
 					<div class="input-group datetimepicker">
-					    <span class="input-group-addon"> Departure</span>
-					    <input class="set-due-date form-control" id="date_time" type="text"/>
+					    <span class="input-group-addon"><i class="fa fa-calendar"></i> Date & Time</span>
+					    <input class="set-due-date form-control" id="date_time" placeholder="Click on the calendar icon then pick date and time." type="text"/>
 					</div>
 					<div class="input-group">
 					    <span class="input-group-addon"> Maximum passengers</span>
@@ -30,7 +39,7 @@
 					</div>
 					<div class="input-group">
 					  <span class="input-group-addon">Residance Quads</span>
-					  <select class="form-control" name="type" id="type">
+					  <select class="form-control" name="quads" id="quads">
 					  	<option value="">Select Resident Hall</option>
 					  	<option value="North Quad">North Quad</option>
 					  	<option value="Massell">Massell</option>
@@ -45,12 +54,13 @@
 					</div>
 					<div class="input-group">
 					  <span class="input-group-addon">Extra Information</span>
-					  <textarea id="organizer" class="form-control" ></textarea>
+					  <textarea id="info" class="form-control" ></textarea>
 					</div>
 					<div class="input-group text-center">
 					  <button type="submit" class="btn btn-success"><i class="fa fa-paper-plane-o"></i> Submit</button>
 					</div>
 				</form>
+			{{/if}}
 			</div>
 			
 		</div>	
@@ -69,7 +79,7 @@
 	</div>
 
 	{{else}}
-	<div class="bg-success" role="success">
+	<div class="alert alert-danger alert-dismissible" role="alert">
 	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	  <i class="fa fa-info-circle red"></i> You must be logged in to create or view drivers!
 	</div>
@@ -79,17 +89,19 @@
 
 <template name="driver">
 	<div class="list-group-item">
-		<h5 class="list-group-item-heading">{{eventname}}</h5>
-	    <p class="list-group-item-text">{{info}}</p>
+		<h5 class="list-group-item-heading"><strong>Event:</strong> {{eventname}}</h5>
+		<p class="list-group-item-text"><strong>Driver Info:</strong> <i class="fa fa-user"></i> {{driver}} <i class="fa fa-envelope"></i> <a href="mailto:{{email}}">{{email}}</a> <i class="fa fa-phone"></i> <a href="tel:{{phone_number}}">{{phone_number}}</a> </p>
+	    <p class="list-group-item-text"><strong>Extra Info:</strong> {{info}}</p>
 	    
 	    <p class="list-group-item-text post-details">
-		    <span class="badge">{{type}}</span> <i class="fa fa-ellipsis-v"></i>
-		    <i class="fa fa-user"></i> {{driver}} <i class="fa fa-ellipsis-v"></i> 
-		    <i class="fa fa-comments"></i> {{numcomments}} comments <i class="fa fa-ellipsis-v"></i> 
 		    <i class="fa fa-calendar"></i> {{date_time}} <i class="fa fa-ellipsis-v"></i> 
-		    <i class="fa fa-map-marker"></i> {{location}} <i class="fa fa-ellipsis-v"></i> 
-		    <button type="button" id="attendButton" title="Click if you'll attend!" class="btn btn-success btn-xs">{{attendance_count}} <i class="fa fa-calendar-check-o"></i> Attending</button> <i class="fa fa-ellipsis-v"></i> 
-		    <button type="button" id="notattendButton" title="Click if you won't attend!" class="btn btn-danger btn-xs"><i class="fa fa-calendar-times-o"></i>Not Attending</button>
+		    <i class="fa fa-building"></i> {{quad}} <i class="fa fa-ellipsis-v"></i>
+		    <i class="fa fa-users"></i> (Max Passengers) {{passenger_count}} <i class="fa fa-ellipsis-v"></i>
+		    <button type="button" id="attendButton" title="Click if you'll attend!" class="btn btn-success btn-xs">{{attendance_count}} <i class="fa fa-calendar-check-o"></i> Interested</button> <i class="fa fa-ellipsis-v"></i> 
+		    <button type="button" id="notattendButton" title="Click if you won't attend!" class="btn btn-danger btn-xs"><i class="fa fa-calendar-times-o"></i>Not Interested</button>
+		    {{#if authorized}}
+		    	<button type="button" id="delete" title="Delete Post!" class="btn btn-danger btn-xs pull-right"><i class="fa fa-trash-o"></i> Delete Event</button>
+		    {{/if}}
 	    </p>
   	</div>
 </template>

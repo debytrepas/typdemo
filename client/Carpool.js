@@ -7,9 +7,10 @@ Template.carpool.events({
 		var eventname = $("#eventname").val();
 		var date_time = $("#date_time").val();
 		var passenger_count = $("#passenger_count").val();
-		var type = $("#type").val();
-		var info = $("#organizer").val();
-		
+		var quads = $("#quads").val();
+		var info = $("#info").val();
+		var phone_number = $("#phone_number").val();
+		var email = $("#email").val();
 	
 		$("#contact").val("");
 		$("#eventname").val("");
@@ -17,6 +18,8 @@ Template.carpool.events({
 		$("#passenger_count").val("");
 		$("#type").val("");
 		$("#organizer").val("");
+		$("#phone_number").val("");
+		$("#email").val("");
 		
 		var profile = Meteor.user().profile;
 		
@@ -24,15 +27,15 @@ Template.carpool.events({
 				userId:Meteor.userId(), 
 				driver: contactname, 
 				date_time: date_time,
-				quad:type,
+				quad:quads,
 				eventname:eventname,
-				attendence:[],
+				attendance:[],
 				passenger_count:passenger_count,
-				info:info
+				info:info,
+				phone_number: phone_number,
+				email:email
 			};
-			console.log("in submit event");
-			console.dir(carpool);
-		//console.dir(carpool);	
+		console.dir(carpool);
 		Carpool.insert(carpool);
 	}
 });
@@ -44,28 +47,30 @@ Template.carpool.helpers({
 
 	numdrivers: function(){
 		return Carpool.find().count();
+	},
+	username: function () {
+		var profile = Meteor.user().profile;
+		return profile.firstName+" "+profile.lastName;
 	}
 });
 
-Template.carpool.helpers({
+Template.driver.helpers({
 	attendance_count: function () {
 		return this.attendance.length;
 	},
 	authorized: function () {
 		return this.userId == Meteor.userId();
 	}
+});
 
-	
-})
-
-Template.carpool.events({
+Template.driver.events({
 	"click #attendButton": function () {
       var attendance = this.attendance;
       var index = attendance.indexOf(Meteor.userId());
       if (index < 0) {
       	attendance.push(Meteor.userId());
       }
-      Events.update(this._id, {
+      Carpool.update(this._id, {
   		$set: {attendance:attendance}
   	  });
     },
@@ -76,15 +81,15 @@ Template.carpool.events({
       if (index >= 0) {
       	attendance.splice(index, 1);
       }
-      Events.update(this._id, {
+      Carpool.update(this._id, {
   		$set: {attendance:attendance}
   	  });
     },
     "click #delete": function () {
-    	Meteor.call("deleteEvent", this._id);
+    	Carpool.remove(this._id);
     }
 });
 
-Template.events.onRendered(function() {
+Template.carpool.onRendered(function() {
     this.$('.datetimepicker').datetimepicker();
 });

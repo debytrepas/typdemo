@@ -19,29 +19,7 @@ Accounts.ui.config({
         fieldLabel: 'Last name',
         inputType: 'text',
         visible: true,
-    }, 
-
-    {
-        fieldName: 'gender',
-        showFieldLabel: false,      // If true, fieldLabel will be shown before radio group
-        fieldLabel: 'Gender',
-        inputType: 'radio',
-        radioLayout: 'vertical',    // It can be 'inline' or 'vertical'
-        data: [
-           {                    // Array of radio options, all properties are required
-            id: 1,                  // id suffix of the radio element
-            label: 'Male',          // label for the radio element
-            value: 'm'              // value of the radio element, this will be saved.
-          }, 
-             {
-            id: 2,
-            label: 'Female',
-            value: 'f',
-            checked: 'checked'
-          }
-          ],
-        visible: true
-    }, 
+    },  
 
     {
         fieldName: 'community',
@@ -71,12 +49,6 @@ Accounts.ui.config({
         visible: true
     }, 
     {
-
-        fieldName: 'studentid',
-        fieldLabel: 'Student ID',
-        inputType: 'numbers',
-        visible: true,
-    },{
         fieldName: 'terms',
         fieldLabel: 'I accept the terms and conditions',
         inputType: 'checkbox',
